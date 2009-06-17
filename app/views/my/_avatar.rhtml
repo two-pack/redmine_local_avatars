@@ -1,0 +1,7 @@
+</div>
+<h3><%= l(:label_avatar)%></h3>
+<div class='box tabular'>
+<div style="width: 128px; height: 128px; border: 1px silver solid;">
+<%= avatar(@user, :size => "128") %>
+</div><br>
+<%= file_field_tag "avatar" %><br />
