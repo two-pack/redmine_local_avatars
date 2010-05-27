@@ -1,4 +1,4 @@
-require 'application'
+require 'application_controller'
 #require 'user' 
 
 module LocalAvatarsPlugin
