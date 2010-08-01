@@ -16,8 +16,12 @@ class UsersController < ApplicationController
   def get_avatar
     @user = User.find(params[:id])
     av = @user.attachments.find_by_description 'avatar'
-    send_file(av.diskfile, :filename => filename_for_content_disposition(av.filename),
-                           :type => av.content_type, 
-                           :disposition => (av.image? ? 'inline' : 'attachment')) if av 
+    if av.nil?
+      super
+    else
+      send_file(av.diskfile, :filename => filename_for_content_disposition(av.filename),
+                             :type => av.content_type, 
+                             :disposition => (av.image? ? 'inline' : 'attachment')) if av 
+    end
   end
 end

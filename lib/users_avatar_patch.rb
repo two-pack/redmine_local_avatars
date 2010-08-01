@@ -11,6 +11,13 @@ module LocalAvatarsPlugin
         has_many :attachments, { :as => :container,
                                  :order => "#{Attachment.table_name}.created_on",
                                  :dependent => :destroy}
+        # deleting attachments requires the attachment to belong to a project
+        belongs_to :project
+
+        def attachments_deletable?(usr)
+          usr == User.current || User.current.admin?   
+        end
+
       end
     end
   end
