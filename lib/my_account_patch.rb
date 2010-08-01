@@ -15,7 +15,7 @@ module LocalAvatarsPlugin
         file_field = params[:avatar] rescue nil
         if file_field
           @user.attachments.clear
-          attachments = attach_files(@user, {'first' => {'file' => file_field, 'description' => 'avatar'}}) 
+          attachments = Attachment.attach_files(@user, {'first' => {'file' => file_field, 'description' => 'avatar'}}) 
           @user.save
         end
         account_without_avatar

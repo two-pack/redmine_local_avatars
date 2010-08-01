@@ -1,16 +1,20 @@
 require 'application_controller'
-#require 'user' 
+require_dependency 'principal' 
+require_dependency 'user' 
 
 module LocalAvatarsPlugin
   module UsersAvatarPatch
     def self.included(base) # :nodoc:    
       base.class_eval do      
         unloadable
-  			has_many :attachments, {:as => :container,
-  															:order => "#{Attachment.table_name}.created_on",
-  															:dependent => :destroy}
+        acts_as_attachable
+        has_many :attachments, { :as => :container,
+                                 :order => "#{Attachment.table_name}.created_on",
+                                 :dependent => :destroy}
       end
     end
   end
 end
+
 User.send(:include, LocalAvatarsPlugin::UsersAvatarPatch)
+
