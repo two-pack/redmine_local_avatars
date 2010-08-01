@@ -1,0 +1,4 @@
+# German strings go here
+de:
+  label_avatar: "Avatar"
+  message_avatar_uploaded: "Avatar erfolgreich hochgeladen"
